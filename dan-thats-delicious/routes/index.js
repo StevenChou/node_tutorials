@@ -5,6 +5,9 @@ const storeController = require('./../controllers/storeController');
 // Do work here
 router.get('/', storeController.myMiddleware, storeController.homepage);
 
+router.get('/add', storeController.addStore);
+router.post('/add', storeController.createStore);
+
 router.get('/reverse/:name', (req, res) => {
   // res.send(req.params.name);
 
