@@ -1,7 +1,7 @@
 exports.myMiddleware = (req, res, next) => {
     req.name = 'Steven';
     if (req.name === 'Steven') {
-        throw Error("That's a very cool name");
+        // throw Error("That's a very cool name");
     }
 
     res.cookie('name', 'Steven.Chou is cool', {maxAge: 90000});
