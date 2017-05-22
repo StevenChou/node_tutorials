@@ -1,3 +1,8 @@
+const mongoose = require('mongoose');
+// 已經在 start.js import
+const Store = mongoose.model('Store');
+
+
 exports.myMiddleware = (req, res, next) => {
     req.name = 'Steven';
     if (req.name === 'Steven') {
@@ -31,7 +36,8 @@ exports.addStore = (req, res) => {
     res.render('editStore', { title: 'Add Store'});
 };
 
-exports.createStore = (req, res) => {
-    console.log(req.body);
-    // res.json(req.body);
+exports.createStore = async (req, res) => {    
+    const store = new Store(req.body);
+    await store.save();
+    res.redirect('/');
 };
