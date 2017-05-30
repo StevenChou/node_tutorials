@@ -14,7 +14,7 @@ const storeSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    tag: [String]
+    tags: [String]
 });
 
 storeSchema.pre('save', function(next) {
