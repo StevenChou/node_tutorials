@@ -37,7 +37,16 @@ exports.addStore = (req, res) => {
 };
 
 exports.createStore = async (req, res) => {    
-    const store = new Store(req.body);
-    await store.save();
-    res.redirect('/');
+    // const store = new Store(req.body);
+    // await store.save();
+
+    const store = await(new Store(req.body)).save();
+
+    // 定義在 app.js 的 middleware
+    req.flash('success', `Successfully Created ${store.name}. Care
+            to leave a review?`);
+
+    // redirect 會叫 browser 重發一次請求!!
+    // 所以 req.flash 只適用於 redirect
+    res.redirect(`/store/${store.slug}`);
 };
